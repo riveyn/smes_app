@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SMES</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
+    <string name="nav_1">Announcement</string>
+    <string name="nav_2">Grades</string>
+    <string name="nav_3">Schedule</string>
+    <string name="nav_4">My Record</string>
+    <string name="nav_5">My Profile</string>
+    <string name="nav_6">Library</string>
+    <string name="nav_7">Registration</string>
+    <string name="nav_8">Settings</string>
+    <string name="nav_9">Logout</string>
+    <string name="announcement_title">ANNOUNCEMENTS</string>
+</resources>
