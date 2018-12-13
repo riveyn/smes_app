@@ -13,4 +13,8 @@
     <string name="nav_8">Settings</string>
     <string name="nav_9">Logout</string>
     <string name="announcement_title">ANNOUNCEMENTS</string>
+    <string name="email_box">E-MAIL ADDRESS</string>
+    <string name="password_box">PASSWORD</string>
+    <string name="login_button">LOGIN</string>
+    <string name="forgotpas_button">forgot password?</string>
 </resources>
