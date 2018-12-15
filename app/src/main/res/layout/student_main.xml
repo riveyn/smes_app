@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/student_drawer"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
+    tools:context=".StudentActivity"
     tools:openDrawer="start">
 
         <LinearLayout
