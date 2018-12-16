@@ -11,11 +11,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 public class StudentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
+    private RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestQueue=Volley.newRequestQueue(this);
         setContentView(R.layout.student_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -26,7 +31,7 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new announcement()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Announcement()).commit();
             navigationView.setCheckedItem(R.id.nav_announcement);
         }
     }
@@ -35,7 +40,8 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_announcement:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new announcement()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Announcement()).commit();
+                //createAnnouncement();
                 break;
             case R.id.nav_grades:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new grades()).commit();
@@ -76,4 +82,6 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
             super.onBackPressed();
         }
     }
+
+
 }
