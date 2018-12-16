@@ -28,7 +28,7 @@ public class login extends AppCompatActivity {
         circularProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsyncTask<String,String,String> demoDownload = new AsyncTask<String, String, String>() {
+                AsyncTask<String,String,String> loginBTN = new AsyncTask<String, String, String>() {
                     @Override
                     protected String doInBackground(String... strings) {
                        //background task for login
@@ -60,7 +60,7 @@ public class login extends AppCompatActivity {
                     }
                 };
             circularProgressButton.startAnimation();
-            demoDownload.execute();
+            loginBTN.execute();
             }
         });
 

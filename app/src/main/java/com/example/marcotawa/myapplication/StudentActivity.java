@@ -1,5 +1,6 @@
 package com.example.marcotawa.myapplication;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -59,7 +60,12 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
                 Toast.makeText(this, "Settings pa ba?", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "wala pangang LOGIN eh!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Logged Out", Toast.LENGTH_LONG).show();
+
+                //open login page
+                finish();
+                Intent studentInent = new Intent(StudentActivity.this, login.class);
+                StudentActivity.this.startActivity(studentInent);
                 break;
 
 
