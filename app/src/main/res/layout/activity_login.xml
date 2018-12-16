@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-
+        android:background="@drawable/shape_default"
         android:text="@string/forgotpas_button"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="@+id/password_field"

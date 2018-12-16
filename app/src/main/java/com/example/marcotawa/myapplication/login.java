@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -25,6 +26,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         circularProgressButton = findViewById(R.id.btn_Login);
+
         circularProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,15 +48,16 @@ public class login extends AppCompatActivity {
                         if (s.equals("done")){
                             Toast.makeText(login.this, "Succesfully Logged In", Toast.LENGTH_SHORT).show();
                             circularProgressButton.doneLoadingAnimation(Color.parseColor("#333639"), BitmapFactory.decodeResource(getResources(),R.drawable.ic_done_white_48dp));
+
                             finish();
 
-                            //choose student or faculty
                             Intent studentInent = new Intent(login.this, StudentActivity.class);
                             login.this.startActivity(studentInent);
                         }
                         else if (s.equals("failed")){
                             Toast.makeText(login.this, "Invalid Password or Email", Toast.LENGTH_SHORT).show();
                             circularProgressButton.revertAnimation();
+
 
                         }
                     }
