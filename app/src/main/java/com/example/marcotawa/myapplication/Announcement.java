@@ -57,7 +57,7 @@ public class Announcement extends Fragment {
                 JSONArray jsonArray;
                 try{
                     jsonArray=new JSONArray(response);
-                    Toast.makeText(getActivity(),response+"Length=",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(),response+"Length=",Toast.LENGTH_LONG).show();
                     List<Map<String, String>> data = new ArrayList<Map<String, String>>();
                     for(int ctr=0; ctr<jsonArray.length();ctr++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(ctr);

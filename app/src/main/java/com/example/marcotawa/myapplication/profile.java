@@ -1,5 +1,7 @@
 package com.example.marcotawa.myapplication;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 public class profile extends Fragment {
 
-
+    private SharedPreferences session;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,8 +76,16 @@ public class profile extends Fragment {
         //spinner formatting
         ArrayAdapter<String> coloradapter = new ArrayAdapter<String>(this.getContext(), R.layout.spinner_profile,items);
         spinner.setAdapter(coloradapter);
-
+        session=getActivity().getSharedPreferences(Global.SESSION,Context.MODE_PRIVATE);
         spinner.setAdapter(spinnerArrayAdapter);
+        EditText fname=view.findViewById(R.id.fname_txt);
+        EditText mname=view.findViewById(R.id.mname_txt);
+        EditText lname=view.findViewById(R.id.lname_txt);
+        EditText bdate=view.findViewById(R.id.dbirth_txt);
+        fname.setText(session.getString("fname",""));
+        mname.setText(session.getString("mname",""));
+        lname.setText(session.getString("lname",""));
+        bdate.setText(session.getString("birthdate",""));
 
 
 
