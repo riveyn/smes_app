@@ -77,6 +77,7 @@ public class login extends AppCompatActivity {
                             }
                         }
                         catch(Exception e){
+                            circularProgressButton.revertAnimation();
                             Toast.makeText(login.this,e.toString(),Toast.LENGTH_LONG).show();
                         }
                     }

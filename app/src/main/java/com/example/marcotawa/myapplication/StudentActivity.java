@@ -80,7 +80,7 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new registration()).commit();
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Settings pa ba?", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Settings not found", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logged Out", Toast.LENGTH_LONG).show();
