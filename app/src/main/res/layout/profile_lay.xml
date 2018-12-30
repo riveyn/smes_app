@@ -32,8 +32,8 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/mname_txt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        app:layout_constraintStart_toEndOf="@+id/profilepic_btn"
+        app:layout_constraintTop_toTopOf="@+id/profilepic_btn" />
 
     <EditText
         android:id="@+id/mname_txt"
@@ -54,12 +54,12 @@
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/profilepic_btn"
         app:layout_constraintEnd_toEndOf="@+id/fname_txt"
         app:layout_constraintStart_toStartOf="@+id/fname_txt" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/profilepic_btn"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
@@ -74,68 +74,135 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Date of Brith"
+        android:hint="Date of Birth"
         android:inputType="date"
-        app:layout_constraintEnd_toStartOf="@+id/pbirth_txt"
+        app:layout_constraintEnd_toStartOf="@+id/age_txt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/profilepic_btn" />
 
     <EditText
         android:id="@+id/pbirth_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Place of Birth"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/dbirth_txt"
-        app:layout_constraintTop_toTopOf="@+id/dbirth_txt" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="Age"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/editText8"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dbirth_txt" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/age_txt"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="Age"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilepic_btn" />
+
+    <EditText
+        android:id="@+id/religion_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Religion"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/gender_spinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editText7"
-        app:layout_constraintTop_toTopOf="@+id/editText7" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbirth_txt" />
 
     <Spinner
         android:id="@+id/gender_spinner"
-        android:layout_width="131dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="1dp"
+        android:dropDownWidth="match_parent"
+        android:padding="2dp"
+        android:paddingTop="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/religion_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/religion_txt"
+        app:layout_constraintTop_toTopOf="@+id/religion_txt" />
+
+    <Spinner
+        android:id="@+id/civilstatus_spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:dropDownWidth="match_parent"
         android:padding="2dp"
         android:paddingTop="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText8"
+        app:layout_constraintBottom_toBottomOf="@+id/nationality_txt"
+        app:layout_constraintEnd_toStartOf="@+id/nationality_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/religion_txt" />
+
+    <EditText
+        android:id="@+id/nationality_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Nationality"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/religion_txt" />
+
+    <EditText
+        android:id="@+id/street_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="House #, Street, Barangay"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/civilstatus_spinner" />
+
+    <EditText
+        android:id="@+id/city_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/street_txt" />
+
+    <EditText
+        android:id="@+id/telno_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Tel. / Cellphone No."
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editText8"
-        app:layout_constraintTop_toTopOf="@+id/editText8" />
+        app:layout_constraintStart_toEndOf="@+id/city_txt"
+        app:layout_constraintTop_toBottomOf="@+id/street_txt" />
 
 </android.support.constraint.ConstraintLayout>
