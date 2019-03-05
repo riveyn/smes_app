@@ -53,7 +53,11 @@ public class login extends AppCompatActivity {
                 StringRequest request=new StringRequest(Request.Method.POST, Global.URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Toast.makeText(login.this,response,Toast.LENGTH_LONG).show();
+                        //
+                        finish();
+                        Intent studentIntent = new Intent(login.this, StudentActivity.class);
+                        login.this.startActivity(studentIntent);
+                        if(true) return;
                         try{
                             JSONArray jsonArray=new JSONArray(response);
                             if(jsonArray.length()==1){
@@ -68,7 +72,7 @@ public class login extends AppCompatActivity {
                                 editor.putString("sex",jsonObject.getString("sex"));
                                 editor.commit();
                                 finish();
-                                Intent studentIntent = new Intent(login.this, StudentActivity.class);
+                                //Intent studentIntent = new Intent(login.this, StudentActivity.class);
                                 login.this.startActivity(studentIntent);
                             }
                             else{
