@@ -49,15 +49,16 @@ public class login extends AppCompatActivity {
         circularProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 circularProgressButton.startAnimation();
+                finish();
+                Intent studentIntent = new Intent(login.this, StudentActivity.class);
+                login.this.startActivity(studentIntent);
+                if(true) return;
                 StringRequest request=new StringRequest(Request.Method.POST, Global.URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //
-                        finish();
-                        Intent studentIntent = new Intent(login.this, StudentActivity.class);
-                        login.this.startActivity(studentIntent);
-                        if(true) return;
+
                         try{
                             JSONArray jsonArray=new JSONArray(response);
                             if(jsonArray.length()==1){
@@ -72,7 +73,7 @@ public class login extends AppCompatActivity {
                                 editor.putString("sex",jsonObject.getString("sex"));
                                 editor.commit();
                                 finish();
-                                //Intent studentIntent = new Intent(login.this, StudentActivity.class);
+                                Intent studentIntent = new Intent(login.this, StudentActivity.class);
                                 login.this.startActivity(studentIntent);
                             }
                             else{
