@@ -24,11 +24,16 @@ public class profile extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.profile_lay, container, false);
 
-        final  String[] items = getResources().getStringArray(R.array.gender_spinner);
-        final  Spinner spinner = view.findViewById(R.id.gender_spinner);
+        final  String[] genderitems = getResources().getStringArray(R.array.gender_spinner);
+        final String[] civilitems = getResources().getStringArray(R.array.civil_spinner);
+        final  Spinner genderspinner = view.findViewById(R.id.gender_spinner);
+        final Spinner civilspinner = view.findViewById(R.id.civilstatus_spinner);
         final String[] genderspinnervalue = {""};
+        final String[] civilspinnervalue = {""};
 
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,items){
+
+        //start of gender spinner
+        final ArrayAdapter<String> genderspinnerArrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,genderitems){
             @Override
             public boolean isEnabled(int position) {
                 if(position == 0 ){
@@ -37,6 +42,8 @@ public class profile extends Fragment {
                     return true;
                 }
             }
+
+
 
             @Override
             public View getDropDownView(int position,View convertView,ViewGroup parent) {
@@ -53,10 +60,10 @@ public class profile extends Fragment {
             }
         };
 
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_profile);
-        spinner.setAdapter(spinnerArrayAdapter);
+        genderspinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_profile);
+        genderspinner.setAdapter(genderspinnerArrayAdapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        genderspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String)parent.getItemAtPosition(position);
@@ -73,21 +80,76 @@ public class profile extends Fragment {
             }
         });
 
-        //spinner formatting
-        ArrayAdapter<String> coloradapter = new ArrayAdapter<String>(this.getContext(), R.layout.spinner_profile,items);
-        spinner.setAdapter(coloradapter);
+        // gender spinner formatting
+        ArrayAdapter<String> gendercoloradapter = new ArrayAdapter<>(this.getContext(), R.layout.spinner_profile, genderitems);
+        genderspinner.setAdapter(gendercoloradapter);
         session=getActivity().getSharedPreferences(Global.SESSION,Context.MODE_PRIVATE);
-        spinner.setAdapter(spinnerArrayAdapter);
+        genderspinner.setAdapter(genderspinnerArrayAdapter);
+
+        //start of civil status spinner
+        final ArrayAdapter<String> civilspinnerArrayAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,civilitems){
+            @Override
+            public boolean isEnabled(int position) {
+                if(position == 0 ){
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+
+
+
+            @Override
+            public View getDropDownView(int position,View convertView,ViewGroup parent) {
+                View view1 = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView)view1;
+                if (position == 0 ){
+                    //color of default
+                    tv.setTextColor(Color.GRAY);
+                }else {
+                    //color of items
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view1;
+            }
+        };
+
+        civilspinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_profile);
+        civilspinner.setAdapter(civilspinnerArrayAdapter);
+
+        civilspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String)parent.getItemAtPosition(position);
+
+                //store selected item on spinner
+                if (position>0){
+                    civilspinnervalue[0] = selectedItemText;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //civil spinner formatting
+        ArrayAdapter<String> civilcoloradapter = new ArrayAdapter<>(this.getContext(), R.layout.spinner_profile, civilitems);
+        genderspinner.setAdapter(civilcoloradapter);
+        session=getActivity().getSharedPreferences(Global.SESSION,Context.MODE_PRIVATE);
+        civilspinner.setAdapter(civilspinnerArrayAdapter);
+
+
         EditText fname=view.findViewById(R.id.fname_txt);
         EditText mname=view.findViewById(R.id.mname_txt);
         EditText lname=view.findViewById(R.id.lname_txt);
         EditText bdate=view.findViewById(R.id.dbirth_txt);
+
         fname.setText(session.getString("fname",""));
         mname.setText(session.getString("mname",""));
         lname.setText(session.getString("lname",""));
         bdate.setText(session.getString("birthdate",""));
-
-
 
         return view;
 

@@ -310,11 +310,11 @@
                 android:layout_height="match_parent"
 
                 android:layout_weight="1"
+                android:background="@drawable/grades_cellsminor"
                 android:paddingLeft="2dp"
                 android:text="Sample Faculty Name"
                 tools:layout_editor_absoluteX="35dp"
-                tools:layout_editor_absoluteY="167dp"
-                android:background="@drawable/grades_cellsminor"/>
+                tools:layout_editor_absoluteY="167dp" />
 
             <TextView
                 android:id="@+id/textView21"
