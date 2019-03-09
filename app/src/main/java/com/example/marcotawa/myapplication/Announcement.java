@@ -44,7 +44,7 @@ public class Announcement extends Fragment {
         requestQueue=Volley.newRequestQueue(getActivity());
         createAnnouncement();
         return view;
-    }
+   }
     public void createAnnouncement(){
         final String query="SELECT * FROM `student_announcements`";
         final ExpandableListView announcements=view.findViewById(R.id.event_list);
