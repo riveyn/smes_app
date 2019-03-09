@@ -33,7 +33,7 @@ public class schedule extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.grades_lay, container, false);
 
-        horizontalListView = (HorizontalListView) findViewById(R.id.HorizontalListView);
+        horizontalListView = (HorizontalListView) getView().findViewById(R.id.HorizontalListView);
 
         imageModelArrayList = populateData();
         Log.d("hjhjh",imageModelArrayList.size()+"");
@@ -42,4 +42,20 @@ public class schedule extends Fragment {
 
  return view;
     }
+
+    private ArrayList<Model> populateData(){
+
+        ArrayList<Model> list = new ArrayList<>();
+
+        for(int i = 0; i < 8; i++){
+            Model imageModel = new Model();
+            imageModel.setName(myImageNameList[i]);
+            imageModel.setImage_drawable(myImageList[i]);
+            list.add(imageModel);
+        }
+
+        return list;
+    }
 }
+
+
