@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
 
-    public ExpandableListAdapter(Context context, List<String> listDataHeader,
+    public ExpandableListAdapter(Announcement context, List<String> listDataHeader,
                                  HashMap<String, List<String>> listChildData) {
-        this._context = context;
+        this._context = context.getContext();
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
