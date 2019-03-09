@@ -13,14 +13,14 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
-        android:text="Date End"
+        android:text="Time End"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/sched_subject"
         app:layout_constraintTop_toBottomOf="@+id/sched_time_start"
-        tools:text="Date End" />
+        tools:text="Time End" />
 
     <TextView
         android:id="@+id/sched_subject"
@@ -29,10 +29,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:text="Content"
+        android:text="Subject Code and Subject Name"
+        android:textAlignment="textStart"
         android:textSize="17dip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -48,7 +50,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
-        android:text="Date Start"
+        android:text="Time Start"
         android:textAlignment="center"
         android:textColor="@color/green"
         app:layout_constraintBottom_toBottomOf="@+id/sched_subject"
@@ -57,19 +59,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/sched_room"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
-        android:text="Announcer and Position"
+        android:text="Room Number"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/sched_time_end"
         app:layout_constraintEnd_toStartOf="@+id/sched_time_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sched_subject"
-        tools:text="Announcer and Position" />
+        tools:text="Room Number" />
 </android.support.constraint.ConstraintLayout>
