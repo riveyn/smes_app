@@ -56,7 +56,7 @@ public class Announcement extends Fragment {
         //createAnnouncement();
 
         // get the listview
-        expListView = (ExpandableListView) getActivity().findViewById(R.id.event_list);
+        expListView = (ExpandableListView) view.findViewById(R.id.event_list);
 
                // preparing list data
         prepareListData();
