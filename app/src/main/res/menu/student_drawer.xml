@@ -6,30 +6,29 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_announcement"
-            android:icon="@drawable/ic_smile"
+
             android:title="@string/nav_1" />
 
         <item
             android:id="@+id/nav_grades"
-            android:icon="@drawable/ic_smile"
+
             android:title="@string/nav_2" />
 
         <item
             android:id="@+id/nav_schedule"
-            android:icon="@drawable/ic_smile"
+
             android:title="@string/nav_3" />
 
-        <item
+<!--        <item
             android:id="@+id/nav_record"
             android:icon="@drawable/ic_smile"
             android:title="@string/nav_4" />
-
+-->
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_smile"
             android:title="@string/nav_5" />
 
-        <item
+ <!--       <item
             android:id="@+id/nav_library"
             android:icon="@drawable/ic_smile"
             android:title="@string/nav_6" />
@@ -38,18 +37,18 @@
             android:id="@+id/nav_registration"
             android:icon="@drawable/ic_smile"
             android:title="@string/nav_7" />
-
+-->
     </group>
 
     <item android:title="--------------------------------------------------------">
         <menu>
-            <item
+<!--            <item
                 android:id="@+id/nav_settings"
                 android:icon="@mipmap/ic_launcher_round"
                 android:title="@string/nav_8" />
+-->
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@mipmap/ic_launcher_round"
                 android:title="@string/nav_9" />
         </menu>
     </item>
