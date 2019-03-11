@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -51,19 +52,21 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
 
                 circularProgressButton.startAnimation();
-                finish();
-                Intent studentIntent = new Intent(login.this, StudentActivity.class);
-                login.this.startActivity(studentIntent);
-                if(true) return;
+               // finish();
+               // Intent studentIntent = new Intent(login.this, StudentActivity.class);
+                //login.this.startActivity(studentIntent);
+                //if(true) return;
                 StringRequest request=new StringRequest(Request.Method.POST, Global.URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try{
+
+                            Log.d(Global.TAG, response);
                             JSONArray jsonArray=new JSONArray(response);
                             if(jsonArray.length()==1){
                                 JSONObject jsonObject=jsonArray.getJSONObject(0);
                                 SharedPreferences.Editor editor=session.edit();
+                                editor.putString("id",jsonObject.getString("person_id"));
                                 editor.putString("username",jsonObject.getString("username"));
                                 editor.putString("password",jsonObject.getString("pswrd"));
                                 editor.putString("fname",jsonObject.getString("fname"));
@@ -71,6 +74,16 @@ public class login extends AppCompatActivity {
                                 editor.putString("lname",jsonObject.getString("lname"));
                                 editor.putString("birthdate",jsonObject.getString("birthdate"));
                                 editor.putString("sex",jsonObject.getString("sex"));
+                                editor.putString("birthplace",jsonObject.getString("birthplace"));
+                                editor.putString("religion",jsonObject.getString("religion"));
+                                editor.putString("nationality",jsonObject.getString("nationality"));
+                                editor.putString("contact_no",jsonObject.getString("contact_no"));
+                                editor.putString("address", jsonObject.getString("res_house_no")+
+                                " "+jsonObject.getString("res_strt_name")+", "+jsonObject.getString("res_barangay"));
+                                editor.putString("city",jsonObject.getString("town_name"));
+                                editor.putInt("civil_status",jsonObject.getInt("civil_status"));
+                                editor.putInt("gender",jsonObject.getInt("sex"));
+                                editor.putString("age",jsonObject.getString("age"));
                                 editor.commit();
                                 finish();
                                 Intent studentIntent = new Intent(login.this, StudentActivity.class);
@@ -95,9 +108,11 @@ public class login extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams(){
                         Map<String,String> params=new HashMap<String,String>();
-                        params.put("query","SELECT * FROM users as u " +
-                                           "INNER JOIN person as p ON p.person_id=u.person_id WHERE " +
-                                           "username=? AND pswrd=?;");
+                        params.put("query","SELECT *, floor(DATEDIFF(NOW(),person.birthdate)/365) as age" +
+                                " FROM users \n" +
+                                "RIGHT JOIN person on person.person_id=users.person_id \n" +
+                                "RIGHT JOIN town on town.town_id=person.res_town_id\n" +
+                                "WHERE users.category = 0  AND username = ? AND pswrd = ?;");
                         params.put("param1",((EditText)findViewById(R.id.email_field)).getText().toString());
                         params.put("param2",((EditText)findViewById(R.id.password_field)).getText().toString());
                         params.put("query_types","ss");

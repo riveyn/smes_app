@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,6 @@ public class Announcement extends Fragment {
 
 
     View view;
-    RequestQueue requestQueue;
     //public RequestQueue requestQueue;
 
 
@@ -52,7 +52,6 @@ public class Announcement extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //ListView announcements=(ListView)view.findViewById(R.id.event_list);
         view=inflater.inflate(R.layout.announcement_lay,container,false);
-        requestQueue=Volley.newRequestQueue(getActivity());
         //createAnnouncement();
 
         // get the listview
@@ -60,16 +59,73 @@ public class Announcement extends Fragment {
 
                // preparing list data
         prepareListData();
-
+/*
         listAdapter = new ExpandableListAdapter( this, listDataHeader, listDataChild);
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
-
+*/
         return view;
    }
 
     private void prepareListData() {
+        final String query = "SELECT announcements.*,person.fname,person.mname,person.lname FROM announcements RIGHT JOIN person on person.person_id=announcements.person_id where recipient_category = 1";
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        StringRequest request=new StringRequest(Request.Method.POST, Global.URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(Global.TAG, "HTTPResponse: "+response);
+
+                JSONArray jsonArray;
+                try{
+                    jsonArray=new JSONArray(response);
+                    //Toast.makeText(getActivity(),response+"Length=",Toast.LENGTH_LONG).show();
+                    //List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+                    HashMap<String,List<String>> announcementDetails= new HashMap<String,List<String>>();
+                    for(int ctr=0; ctr<jsonArray.length();ctr++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(ctr);
+                        Log.d(Global.TAG, "JSONObject: "+jsonObject.toString());
+                        //AnnouncementTitle.add(jsonObject.get("title").toString());
+                        listDataHeader.add(jsonObject.get("title").toString());
+                        List<String> stringList=new ArrayList<String>();
+
+                        stringList.add(jsonObject.get("content").toString());
+
+                        List<String> announcementList = new ArrayList<>();
+                        announcementList.add(jsonObject.get("date_start").toString().substring(0,10));
+                        announcementList.add(jsonObject.get("date_end").toString().substring(0,10));
+                        announcementList.add(jsonObject.get("lname").toString()+", "+jsonObject.get("fname").toString()+" "+jsonObject.get("mname").toString());
+                        announcementDetails.put(listDataHeader.get(ctr), announcementList);
+                        //AnnouncementContent.put(AnnouncementTitle.get(ctr), stringList);
+                        listDataChild.put(listDataHeader.get(ctr), stringList);
+                    }
+                    listAdapter = new ExpandableListAdapter( Announcement.this, listDataHeader, listDataChild, announcementDetails);
+                    // setting list adapter
+                    expListView.setAdapter(listAdapter);
+                }
+                catch(Exception e){
+                    Toast.makeText(getActivity(),e.toString(),Toast.LENGTH_LONG).show();
+                    Log.d(Global.TAG, "Volley Exception thrown: ", e);
+                }
+
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
+                Log.d(Global.TAG, "Some Error Occured.", error);
+            }
+        }){
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<String,String>();
+                params.put("query",query);
+                params.put("token",Global.TOKEN);
+                return params;
+            }
+        };
+        Global.requestQueue.add(request);
+        /*
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
@@ -106,6 +162,7 @@ public class Announcement extends Fragment {
         listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
         listDataChild.put(listDataHeader.get(1), nowShowing);
         listDataChild.put(listDataHeader.get(2), comingSoon);
+        */
     }
 /*
 

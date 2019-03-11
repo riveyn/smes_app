@@ -16,6 +16,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class profile extends Fragment {
 
     private SharedPreferences session;
@@ -136,21 +145,65 @@ public class profile extends Fragment {
 
         //civil spinner formatting
         ArrayAdapter<String> civilcoloradapter = new ArrayAdapter<>(this.getContext(), R.layout.spinner_profile, civilitems);
-        genderspinner.setAdapter(civilcoloradapter);
+        genderspinner.setAdapter(gendercoloradapter);
         session=getActivity().getSharedPreferences(Global.SESSION,Context.MODE_PRIVATE);
         civilspinner.setAdapter(civilspinnerArrayAdapter);
-
-
         EditText fname=view.findViewById(R.id.fname_txt);
         EditText mname=view.findViewById(R.id.mname_txt);
         EditText lname=view.findViewById(R.id.lname_txt);
         EditText bdate=view.findViewById(R.id.dbirth_txt);
+        EditText religion = view.findViewById(R.id.religion_txt);
+        EditText nationality = view.findViewById(R.id.nationality_txt);
+        EditText contactNumber = view.findViewById(R.id.telno_txt);
+        EditText placeOfBirth = view.findViewById(R.id.pbirth_txt);
+        EditText address = view.findViewById(R.id.street_txt);
+        EditText city = view.findViewById(R.id.city_txt);
+        EditText age = view.findViewById(R.id.age_txt);
+        Spinner gender = view.findViewById(R.id.gender_spinner);
+
 
         fname.setText(session.getString("fname",""));
         mname.setText(session.getString("mname",""));
         lname.setText(session.getString("lname",""));
         bdate.setText(session.getString("birthdate",""));
+        religion.setText(session.getString("religion",""));
+        nationality.setText(session.getString("nationality",""));
+        contactNumber.setText(session.getString("contact_no",""));
+        placeOfBirth.setText(session.getString("birthplace",""));
+        address.setText(session.getString("address",""));
+        city.setText(session.getString("city",""));
+        civilspinner.setSelection(session.getInt("civil_status",0));
+        genderspinner.setSelection(session.getInt("gender",0));
+        age.setText(session.getString("age","0"));
+        //gender.setSelection();
 
+
+
+        view.findViewById(R.id.save_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringRequest submitRequest = new StringRequest(Request.Method.POST, Global.URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        final String query = "";
+                        Map<String,String> params=new HashMap<String,String>();
+                        params.put("query",query);
+                        params.put("token",Global.TOKEN);
+                        return params;
+                    }
+                };
+            }
+        });
         return view;
 
 

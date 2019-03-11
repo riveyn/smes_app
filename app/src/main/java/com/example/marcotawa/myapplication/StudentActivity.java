@@ -27,12 +27,11 @@ import java.util.Map;
 
 public class StudentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
-    private RequestQueue requestQueue;
     private SharedPreferences session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestQueue=Volley.newRequestQueue(this);
+        Global.requestQueue=Volley.newRequestQueue(this);
         session=getSharedPreferences(Global.SESSION,MODE_PRIVATE);
         setContentView(R.layout.student_main);
         Toolbar toolbar = findViewById(R.id.toolbar);

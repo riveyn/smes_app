@@ -16,12 +16,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
+    private HashMap<String,List<String>> _announcementDetails;
 
     public ExpandableListAdapter(Announcement context, List<String> listDataHeader,
                                  HashMap<String, List<String>> listChildData) {
         this._context = context.getContext();
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
+    }
+    public ExpandableListAdapter(Announcement context, List<String> listDataHeader,
+                                 HashMap<String, List<String>> listChildData, HashMap<String,List<String>> AnnouncementDetails) {
+        this._context = context.getContext();
+        this._listDataHeader = listDataHeader;
+        this._listDataChild = listChildData;
+        this._announcementDetails = AnnouncementDetails;
     }
 
 
@@ -39,20 +47,26 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        if(getChildrenCount(groupPosition)>1){
+        if(getChildrenCount(groupPosition)>0){
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+            final String childText = (String) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item, null);
-        }
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this._context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_item, null);
+            }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.sched_subject);
+            TextView txtListChild = (TextView) convertView
+                    .findViewById(R.id.sched_subject);
 
-        txtListChild.setText(childText);
+            txtListChild.setText(childText);
+            String dateStart=_announcementDetails.get(_listDataHeader.get(groupPosition)).get(0);
+            String dateEnd = _announcementDetails.get(_listDataHeader.get(groupPosition)).get(1);
+            String announcer = _announcementDetails.get(_listDataHeader.get(groupPosition)).get(2);
+            ((TextView)convertView.findViewById(R.id.sched_time_start)).setText(dateStart);
+            ((TextView)convertView.findViewById(R.id.sched_time_end)).setText(dateEnd);
+            ((TextView)convertView.findViewById(R.id.textView24)).setText(announcer);
         }
         else{
             LayoutInflater infalInflater = (LayoutInflater) this._context
